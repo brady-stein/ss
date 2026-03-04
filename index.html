@@ -1,1310 +1,1255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SeatStock Affiliate — Get Paid to Post</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --orange: #F2644C;
-      --orange-2: #ED4C39;
-      --orange-3: #E23627;
-      --dark: #1A1A1A;
-      --card: #222222;
-      --card-2: #2A2A2A;
-      --gray: #D5D2D0;
-      --white: #FFFFFF;
-      --muted: #777777;
-      --muted-2: #AAAAAA;
-      --border: rgba(255,255,255,0.06);
-      --border-o: rgba(242,100,76,0.25);
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SeatStock — Affiliate Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #EDE9E3;
+  color: #292929;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ─── BRAND TOKENS ───────────────────────────────────────────── */
+:root {
+  --bg: #EDE9E3;
+  --text: #292929;
+  --orange: #F2644C;
+  --orange2: #ED4C39;
+  --orange3: #E23627;
+  --green: #16A34A;
+  --white: #FFFFFF;
+  --border: rgba(41,41,41,0.08);
+  --muted: rgba(41,41,41,0.45);
+  --shadow: 0 2px 16px rgba(41,41,41,0.07), 0 1px 4px rgba(41,41,41,0.04);
+  --shadow-md: 0 4px 32px rgba(41,41,41,0.10), 0 2px 8px rgba(41,41,41,0.06);
+}
 
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--dark);
-      color: var(--white);
-      overflow-x: hidden;
-    }
+/* ─── LOGO ───────────────────────────────────────────────────── */
+.logo-wrap { display: flex; align-items: center; cursor: pointer; }
+.logo-mark { display: flex; align-items: flex-end; gap: 1px; }
+.logo-mark .ls { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.7rem; color: #F2644C; line-height: 1; }
+.logo-mark .ss { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.05rem; color: #F2644C; line-height: 1; margin-bottom: 3px; }
+.logo-word { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.15rem; color: #292929; letter-spacing: -0.025em; margin-left: 8px; }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 1000;
-      padding: 14px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(26,26,26,0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
+/* ─── BUTTONS ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.65em 1.5em; border-radius: 6px;
+  cursor: pointer; transition: all 0.18s ease; border: 2px solid transparent;
+  white-space: nowrap;
+}
+.btn-orange {
+  background: var(--orange); color: #fff; border-color: var(--orange);
+}
+.btn-orange:hover { background: var(--orange2); border-color: var(--orange2); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--orange); border-color: var(--orange);
+}
+.btn-outline:hover { background: var(--orange); color: #fff; transform: translateY(-1px); }
+.btn-full { width: 100%; }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
+/* ─── CARDS ──────────────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+}
 
-    .logo-mark {
-      width: 34px; height: 34px;
-      background: var(--orange);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #fff;
-      letter-spacing: -1px;
-    }
+/* ─── NAV ────────────────────────────────────────────────────── */
+#mainNav {
+  position: sticky; top: 0; z-index: 500;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(8px);
+}
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.nav-user-email { font-size: 0.85rem; color: var(--muted); display: none; }
+.nav-logout { font-size: 0.85rem; color: var(--orange); cursor: pointer; display: none; font-weight: 600; }
+.nav-logout:hover { text-decoration: underline; }
 
-    .logo-word {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--white);
-      letter-spacing: -0.025em;
-    }
+/* ─── PUBLIC LANDING ─────────────────────────────────────────── */
+#publicView { display: block; }
 
-    .nav-btn {
-      background: var(--orange);
-      color: #fff;
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .nav-btn:hover { background: var(--orange-2); transform: translateY(-1px); }
+/* HERO */
+.hero {
+  min-height: calc(100vh - 64px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 5rem 2rem 3rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(242,100,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--orange); border: 1px solid rgba(242,100,76,0.3);
+  padding: 0.35em 1em; border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--text); line-height: 0.95;
+  margin-bottom: 1.5rem;
+}
+.hero h1 span { color: var(--orange); }
+.hero-sub {
+  max-width: 600px; font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--text); line-height: 1.6; margin-bottom: 2.25rem;
+}
+.hero-sub strong { color: var(--green); font-weight: 600; }
+.hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+.hero-tagline {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.9rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 3rem;
+}
 
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 120px 24px 0;
-      position: relative;
-      overflow: hidden;
-    }
+/* TICKER */
+.ticker-wrap {
+  width: 100%; overflow: hidden;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 0.7rem 0; background: var(--bg);
+}
+.ticker-track {
+  display: flex; gap: 0; width: max-content;
+  animation: tickerScroll 38s linear infinite;
+}
+.ticker-item {
+  font-family: 'Oswald', sans-serif; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0 2rem; white-space: nowrap; color: var(--text);
+}
+.ticker-item .t-orange { color: var(--orange); }
+.ticker-item .t-green { color: var(--green); }
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      user-select: none;
-      overflow: hidden;
-    }
+/* HOW IT WORKS */
+.section-label {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange);
+  margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--text); margin-bottom: 0.5rem;
+}
+.section-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; max-width: 520px; }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.step-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem 1.5rem;
+  box-shadow: var(--shadow); position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.step-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.step-num {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 4rem; color: var(--orange); line-height: 1;
+  opacity: 0.15; position: absolute; top: 0.5rem; right: 1rem;
+  pointer-events: none;
+}
+.step-icon { font-size: 2rem; margin-bottom: 1rem; }
+.step-card h3 {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.15rem;
+  text-transform: uppercase; letter-spacing: -0.025em;
+  color: var(--text); margin-bottom: 0.5rem;
+}
+.step-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
-    .hero-bg-text {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(200px, 40vw, 480px);
-      color: rgba(242,100,76,0.04);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
+/* PAY STRUCTURE */
+.pay-section { background: var(--bg); padding: 5rem 2rem; }
+.pay-inner { max-width: 1100px; margin: 0 auto; }
+.pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.pay-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem 1.5rem; box-shadow: var(--shadow);
+  text-align: center; transition: transform 0.2s;
+}
+.pay-card:hover { transform: translateY(-3px); }
+.pay-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.pay-amount {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 3rem; color: var(--green); letter-spacing: -0.03em; line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.pay-freq { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.pay-card h3 {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1rem;
+  text-transform: uppercase; letter-spacing: -0.025em; margin-bottom: 0.4rem;
+}
+.pay-card p { font-size: 0.85rem; color: var(--muted); }
+.req-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--shadow);
+}
+.req-box h4 {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1rem;
+  text-transform: uppercase; letter-spacing: -0.025em; margin-bottom: 1rem;
+}
+.req-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+.req-list li {
+  font-size: 0.875rem; color: var(--muted); padding-left: 1.2em; position: relative;
+}
+.req-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--orange); font-size: 0.8em; top: 0.05em; }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(242,100,76,0.1);
-      border: 1px solid rgba(242,100,76,0.3);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 24px;
-      position: relative;
-    }
+/* SATURDAYS */
+.sat-section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+.sat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--orange);
+  border-radius: 12px; padding: 2.5rem;
+  box-shadow: var(--shadow);
+  display: flex; gap: 2.5rem; align-items: center;
+}
+.sat-left { flex: 1; }
+.sat-badge {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  background: rgba(242,100,76,0.1); color: var(--orange);
+  padding: 0.3em 0.85em; border-radius: 100px; margin-bottom: 1rem;
+}
+.sat-card h2 {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 2rem; text-transform: uppercase; letter-spacing: -0.025em;
+  margin-bottom: 0.75rem;
+}
+.sat-card p { font-size: 0.92rem; color: var(--muted); max-width: 520px; line-height: 1.65; margin-bottom: 1.25rem; }
+.sat-stats { display: flex; gap: 2rem; margin-top: 1.5rem; }
+.sat-stat-val {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.6rem;
+  color: var(--green); letter-spacing: -0.025em;
+}
+.sat-stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.sat-right {
+  min-width: 200px; text-align: center;
+  background: rgba(242,100,76,0.06); border-radius: 10px; padding: 1.5rem;
+}
+.sat-right .big { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 3rem; color: var(--orange); }
+.sat-right small { font-size: 0.78rem; color: var(--muted); display: block; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .hero h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(4rem, 12vw, 8rem);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 28px;
-      position: relative;
-    }
+/* APPLICATION FORM */
+.form-section { padding: 5rem 2rem; background: var(--bg); }
+.form-inner { max-width: 760px; margin: 0 auto; }
+.form-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 3rem; box-shadow: var(--shadow-md);
+}
+.form-title {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 2.25rem; text-transform: uppercase; letter-spacing: -0.025em;
+  margin-bottom: 0.4rem;
+}
+.form-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-group label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.form-group input, .form-group select {
+  background: #FAFAF8; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 0.75em 1em;
+  font-family: 'Inter', sans-serif; font-size: 0.925rem; color: var(--text);
+  transition: border-color 0.18s, box-shadow 0.18s; outline: none;
+  -webkit-appearance: none; appearance: none;
+}
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--orange); box-shadow: 0 0 0 3px rgba(242,100,76,0.12);
+}
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23292929' stroke-opacity='.4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5em;
+}
+.form-success {
+  display: none; background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.25);
+  border-radius: 8px; padding: 1rem 1.25rem;
+  color: var(--green); font-weight: 600; font-size: 0.95rem;
+  margin-top: 1rem; text-align: center;
+}
 
-    .hero h1 .accent { color: var(--orange); }
+/* FOOTER */
+footer {
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 2rem; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.8rem; color: var(--muted); transition: color 0.15s; }
+.footer-links a:hover { color: var(--orange); }
+.footer-copy { font-size: 0.78rem; color: var(--muted); }
 
-    .hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.65;
-      color: var(--muted);
-      max-width: 460px;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    .hero-sub strong { color: var(--white); font-weight: 600; }
+/* ─── LOGIN OVERLAY ──────────────────────────────────────────── */
+#loginOverlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(41,41,41,0.65); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 2rem;
+}
+#loginOverlay.active { display: flex; }
+.login-card {
+  background: var(--white); border-radius: 16px;
+  padding: 2.75rem 2.5rem; width: 100%; max-width: 400px;
+  box-shadow: 0 24px 64px rgba(41,41,41,0.18);
+  position: relative; text-align: center;
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.login-close {
+  position: absolute; top: 1rem; right: 1.25rem;
+  font-size: 1.4rem; color: var(--muted); cursor: pointer; line-height: 1;
+  transition: color 0.15s;
+}
+.login-close:hover { color: var(--text); }
+.login-logo { margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+.login-portal {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.1rem;
+  text-transform: uppercase; letter-spacing: -0.025em; color: var(--orange);
+  margin-bottom: 0.3rem;
+}
+.login-welcome { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.75rem; }
+.login-form { text-align: left; }
+.login-form .form-group { margin-bottom: 0.85rem; }
+.login-error {
+  display: none; color: #DC2626; font-size: 0.82rem;
+  background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.18);
+  border-radius: 6px; padding: 0.5em 0.85em; margin-bottom: 0.75rem; text-align: center;
+}
+.login-hint { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1rem; }
+.login-hint a { color: var(--orange); cursor: pointer; }
+.login-hint a:hover { text-decoration: underline; }
 
-    .btn-primary {
-      display: inline-block;
-      background: var(--orange);
-      color: #fff;
-      padding: 16px 52px;
-      border-radius: 10px;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.2s;
-      position: relative;
-    }
-    .btn-primary:hover {
-      background: var(--orange-2);
-      transform: translateY(-2px);
-      box-shadow: 0 16px 48px rgba(242,100,76,0.25);
-    }
+/* ─── DASHBOARD ──────────────────────────────────────────────── */
+#dashView { display: none; min-height: 100vh; background: var(--bg); }
 
-    .hero-fine {
-      display: block;
-      margin-top: 14px;
-      font-size: 0.75rem;
-      color: #555;
-      letter-spacing: 0.5px;
-      position: relative;
-    }
+.dash-header {
+  padding: 2.5rem 2rem 0; max-width: 1200px; margin: 0 auto;
+}
+.dash-title {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.8rem); text-transform: uppercase;
+  letter-spacing: -0.025em; color: var(--text); margin-bottom: 0.2rem;
+}
+.dash-subtitle {
+  font-size: 0.9rem; font-weight: 600; color: var(--orange);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
 
-    /* Ticker */
-    .ticker-wrap {
-      width: 100%;
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      padding: 13px 0;
-      margin-top: auto;
-    }
-    .ticker {
-      display: flex;
-      gap: 0;
-      animation: scrollTicker 35s linear infinite;
-      width: max-content;
-      white-space: nowrap;
-    }
-    .t-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0 32px;
-    }
-    .t-item .hi { color: var(--orange); font-weight: 700; }
-    .t-sep { color: var(--orange); opacity: 0.4; font-size: 0.6rem; }
-    @keyframes scrollTicker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+.dash-grid {
+  display: grid; grid-template-columns: 1fr 1.55fr;
+  gap: 1.5rem; padding: 2rem 2rem 4rem; max-width: 1200px; margin: 0 auto;
+}
+.dash-left { display: flex; flex-direction: column; gap: 1.5rem; }
+.dash-right { display: flex; flex-direction: column; gap: 1.5rem; }
 
-    /* ===== SHARED ===== */
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 100px 24px; }
-    .wrap-sm { max-width: 900px; margin: 0 auto; padding: 100px 24px; }
+/* WALLET CARD */
+.wallet-label {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.wallet-amount {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 3.5rem; color: var(--green); letter-spacing: -0.03em; line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.wallet-sublabel { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+.wallet-breakdown { border-top: 1px solid var(--border); padding-top: 1.25rem; }
+.breakdown-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.45rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-label { color: var(--muted); }
+.breakdown-val { font-weight: 600; color: var(--green); font-family: 'Oswald', sans-serif; font-size: 1rem; }
+.wallet-btn { margin-top: 1.25rem; }
+.wallet-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
 
-    .sec-head { text-align: center; margin-bottom: 60px; }
-    .eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 14px;
-    }
-    .sec-head h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.025em;
-      line-height: 1;
-      color: var(--white);
-    }
-    .sec-head p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-top: 14px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.65;
-    }
+/* STREAK CARD */
+.streak-label {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.streak-main { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+.streak-fire { font-size: 2rem; animation: flicker 1.8s ease-in-out infinite; }
+@keyframes flicker {
+  0%,100% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.85; transform: scale(1.04); }
+  50% { opacity: 1; transform: scale(0.97); }
+  75% { opacity: 0.9; transform: scale(1.05); }
+}
+.streak-count {
+  font-family: 'Oswald', sans-serif; font-weight: 700;
+  font-size: 2.5rem; color: var(--text); letter-spacing: -0.025em;
+}
+.streak-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.25rem; }
+.streak-pips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pip {
+  width: 36px; height: 36px; border-radius: 8px; display: flex;
+  align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.04em; transition: all 0.2s;
+}
+.pip-done { background: var(--orange); color: #fff; }
+.pip-current { background: transparent; border: 2px solid var(--orange); color: var(--orange); }
+.pip-empty { background: rgba(41,41,41,0.06); color: var(--muted); }
 
-    /* Fade-up */
-    .fu {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .fu.vis { opacity: 1; transform: translateY(0); }
+/* POSTING CHECKLIST */
+.checklist-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+.checklist-title {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1rem;
+  text-transform: uppercase; letter-spacing: -0.025em;
+}
+.checklist-progress-badge {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 0.9rem;
+  color: var(--orange);
+}
+.platform-section { margin-bottom: 1.75rem; }
+.platform-label {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 0.85rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.plat-snap { color: #CCAC00; }
+.plat-ig { color: var(--orange); }
+.day-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.day-label {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  width: 28px; flex-shrink: 0;
+}
+.dots-wrap { display: flex; gap: 0.45rem; }
+.dot {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  user-select: none;
+}
+.dot:active { transform: scale(0.88); }
+.dot.snap-done { background: #FFD600; color: #292929; }
+.dot.snap-pending { background: transparent; border: 2px solid #FFD600; color: #9A8000; }
+.dot.ig-done { background: var(--orange); color: #fff; }
+.dot.ig-pending { background: transparent; border: 2px solid var(--orange); color: var(--orange); }
+.dot.na { background: rgba(41,41,41,0.05); color: rgba(41,41,41,0.2); cursor: default; font-size: 0.9rem; }
+@keyframes dotPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.dot.popping { animation: dotPop 0.25s ease; }
+.checklist-bar-wrap { margin-top: 1.5rem; }
+.progress-bar-bg { height: 7px; background: var(--border); border-radius: 100px; overflow: hidden; margin-bottom: 0.5rem; }
+.progress-bar-fill { height: 100%; background: var(--orange); border-radius: 100px; transition: width 0.35s ease; }
+.progress-text { font-size: 0.78rem; color: var(--muted); }
+.progress-text span { color: var(--orange); font-weight: 600; }
 
-    /* ===== HOW IT WORKS ===== */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 20px;
-    }
+/* REFERRAL CARD */
+.referral-link-wrap {
+  display: flex; align-items: center;
+  border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.referral-link-url {
+  flex: 1; padding: 0.65em 1em; font-size: 0.85rem; color: var(--muted);
+  font-family: 'Inter', monospace; background: #FAFAF8; overflow: hidden; white-space: nowrap;
+}
+.referral-copy-btn {
+  flex-shrink: 0; padding: 0.65em 1.1em;
+  background: var(--orange); color: #fff;
+  font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  border: none; transition: background 0.2s;
+}
+.referral-copy-btn:hover { background: var(--orange2); }
+.referral-copy-btn.copied { background: var(--green); }
+.ref-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+.ref-stat {
+  background: rgba(41,41,41,0.03); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.75rem; text-align: center;
+}
+.ref-stat-val {
+  font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.5rem;
+  color: var(--green); letter-spacing: -0.025em; display: block;
+  transition: transform 0.2s;
+}
+.ref-stat-val.flash { animation: greenFlash 0.4s ease; }
+@keyframes greenFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.ref-stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.ref-note { font-size: 0.78rem; color: var(--muted); }
+.ref-label {
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.75rem;
+}
 
-    .step-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      transition: all 0.3s;
-    }
-    .step-card:hover {
-      border-color: var(--border-o);
-      transform: translateY(-4px);
-      background: #252525;
-    }
+/* ─── SCROLL ANIMATIONS ──────────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    .step-n {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 18px;
-    }
-
-    .step-card h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.025em;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .step-card p {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-    .step-card p strong { color: var(--white); }
-
-    .step-earn {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-    .step-earn .big {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--orange);
-      line-height: 1;
-    }
-    .step-earn .sm { font-size: 0.78rem; color: var(--muted); }
-
-    /* ===== DASHBOARD ===== */
-    .dash-section {
-      background: linear-gradient(180deg, var(--dark) 0%, #1E1E1E 50%, var(--dark) 100%);
-    }
-
-    .dash-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .dash-col { display: flex; flex-direction: column; gap: 18px; }
-
-    /* Card base */
-    .dc {
-      background: #1E1E1E;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-    }
-
-    .dc-label {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .live-ind {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.6rem;
-      color: var(--orange);
-    }
-    .live-ind::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--orange);
-      animation: blink 1.4s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
-
-    /* WALLET */
-    .wallet-amt {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3.8rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 6px;
-    }
-    .wallet-amt .dollar { color: var(--orange); font-size: 2.2rem; vertical-align: top; margin-top: 8px; display: inline-block; }
-    .wallet-sub-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 22px; }
-
-    .wallet-rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-    .wrow {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.84rem;
-    }
-    .wrow .wlbl {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-    }
-    .wrow .wlbl::before {
-      content: '';
-      width: 7px; height: 7px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .wrow.base .wlbl::before { background: var(--orange); }
-    .wrow.ref .wlbl::before { background: #F5B041; }
-    .wrow.ftbl .wlbl::before { background: #5DADE2; }
-    .wrow .wval {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      color: var(--white);
-    }
-
-    .withdraw-btn {
-      width: 100%;
-      padding: 13px;
-      background: var(--orange);
-      border: none;
-      border-radius: 10px;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: 0.88rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .withdraw-btn:hover { background: var(--orange-2); }
-
-    .wallet-note { text-align: center; font-size: 0.68rem; color: #444; margin-top: 9px; }
-
-    /* STREAK */
-    .streak-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-    .streak-fire {
-      font-size: 2.8rem;
-      filter: drop-shadow(0 0 10px rgba(242,100,76,0.5));
-      animation: flicker 2.2s ease-in-out infinite;
-    }
-    @keyframes flicker {
-      0%,100%{transform:scale(1) rotate(-2deg)}
-      50%{transform:scale(1.06) rotate(2deg)}
-    }
-    .streak-info h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.9rem;
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-    .streak-info p { font-size: 0.76rem; color: var(--muted); margin-top: 4px; }
-
-    .streak-pips {
-      display: flex;
-      gap: 6px;
-    }
-    .pip {
-      width: 26px; height: 26px;
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 600;
-    }
-    .pip.done { background: var(--orange); color: #fff; }
-    .pip.cur {
-      background: rgba(242,100,76,0.15);
-      border: 2px solid var(--orange);
-      color: var(--orange);
-    }
-    .pip.empty {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      color: #333;
-    }
-
-    /* CHECKLIST */
-    .cl-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .cl-progress-lbl {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--orange);
-      letter-spacing: 1px;
-    }
-
-    .days { display: flex; flex-direction: column; gap: 7px; }
-    .day-row { display: flex; align-items: center; gap: 8px; }
-    .day-lbl {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--muted);
-      width: 30px;
-      flex-shrink: 0;
-    }
-    .post-dots { display: flex; gap: 5px; flex: 1; }
-
-    .pd {
-      flex: 1;
-      height: 26px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.58rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s, opacity 0.15s;
-      border: 1px solid transparent;
-      position: relative;
-      user-select: none;
-    }
-    .pd:hover:not(.empty) { transform: scale(1.08); }
-
-    .pd.snap { background:rgba(255,252,0,0.06); border-color:rgba(255,252,0,0.14); color:rgba(255,252,0,0.35); }
-    .pd.snap::after { content:'S'; position:absolute; }
-    .pd.snap.done { background:rgba(255,252,0,0.13); border-color:rgba(255,252,0,0.5); color:#FFFC00; }
-    .pd.snap.done::after { content:'✓'; }
-
-    .pd.ig { background:rgba(242,100,76,0.06); border-color:rgba(242,100,76,0.14); color:rgba(242,100,76,0.35); }
-    .pd.ig::after { content:'IG'; position:absolute; font-size:0.52rem; }
-    .pd.ig.done { background:rgba(242,100,76,0.15); border-color:var(--orange); color:var(--orange); }
-    .pd.ig.done::after { content:'✓'; font-size:0.72rem; }
-
-    .pd.empty { background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.04); cursor:default; }
-
-    @keyframes popIn {
-      0%{transform:scale(0.7)}60%{transform:scale(1.18)}100%{transform:scale(1)}
-    }
-    .pd.popped { animation: popIn 0.28s ease; }
-
-    .cl-bar-wrap {
-      margin-top: 14px;
-      height: 3px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .cl-bar {
-      height: 100%;
-      background: var(--orange);
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.8s cubic-bezier(.4,0,.2,1);
-    }
-    .cl-bar-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 7px;
-      font-size: 0.7rem;
-    }
-    .cl-bar-meta .l { color: var(--muted); }
-    .cl-bar-meta .r { color: var(--orange); font-weight: 600; }
-
-    /* REFERRAL */
-    .ref-link-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 11px 14px;
-      margin-bottom: 18px;
-    }
-    .ref-link-text {
-      flex: 1;
-      font-size: 0.8rem;
-      color: var(--muted-2);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-family: 'Inter', monospace;
-    }
-    .ref-link-text span { color: var(--orange); font-weight: 600; }
-    .copy-btn {
-      background: var(--orange);
-      border: none;
-      border-radius: 7px;
-      padding: 7px 14px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-    .copy-btn:hover { background: var(--orange-2); }
-    .copy-btn.copied { background: #27AE60; }
-
-    .ref-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 10px;
-    }
-    .ref-stat {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 10px;
-      text-align: center;
-    }
-    .ref-stat-val {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--orange);
-      line-height: 1;
-      transition: color 0.5s;
-    }
-    .ref-stat-lbl { font-size: 0.65rem; color: var(--muted); margin-top: 4px; line-height: 1.3; }
-
-    /* Demo label */
-    .demo-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(242,100,76,0.08);
-      border: 1px solid rgba(242,100,76,0.2);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 28px;
-    }
-
-    /* ===== PAY BREAKDOWN ===== */
-    .pay-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-      margin-bottom: 32px;
-    }
-
-    .pay-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 24px;
-      transition: all 0.3s;
-    }
-    .pay-card:hover { border-color: var(--border-o); transform: translateY(-3px); }
-
-    .pay-icon { font-size: 1.4rem; margin-bottom: 16px; }
-    .pay-tag {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 8px;
-    }
-    .pay-amt {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-    }
-    .pay-amt .unit { font-size: 1.1rem; color: var(--muted); font-weight: 400; }
-    .pay-desc { font-size: 0.85rem; line-height: 1.55; color: var(--muted); }
-    .pay-desc strong { color: var(--white); }
-
-    .reqs-box {
-      background: rgba(242,100,76,0.05);
-      border: 1px solid rgba(242,100,76,0.18);
-      border-radius: 14px;
-      padding: 28px 32px;
-    }
-    .reqs-box h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--orange);
-      margin-bottom: 22px;
-    }
-    .reqs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .req-item { display: flex; gap: 12px; align-items: flex-start; }
-    .req-check {
-      width: 19px; height: 19px;
-      border-radius: 5px;
-      background: var(--orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .req-check svg { width: 10px; height: 8px; }
-    .req-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.4; }
-    .req-item p strong { color: var(--white); }
-
-    /* ===== SATURDAYS ===== */
-    .sat-section { background: linear-gradient(180deg, transparent 0%, rgba(242,100,76,0.03) 50%, transparent 100%); }
-    .sat-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(242,100,76,0.18);
-      border-radius: 20px;
-      padding: 52px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 52px;
-      align-items: center;
-    }
-    .sat-h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.025em;
-      line-height: 1;
-      color: var(--white);
-      margin: 12px 0 18px;
-    }
-    .sat-h2 span { color: var(--orange); }
-    .sat-p { font-size: 0.92rem; line-height: 1.65; color: var(--muted); margin-bottom: 28px; }
-    .sat-stats { display: flex; gap: 28px; }
-    .sat-stat .v {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--orange);
-      line-height: 1;
-    }
-    .sat-stat .l { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
-
-    .sat-steps { display: flex; flex-direction: column; gap: 18px; }
-    .sat-step { display: flex; gap: 14px; align-items: flex-start; }
-    .sat-step-num {
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      background: var(--orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: #fff;
-      flex-shrink: 0;
-    }
-    .sat-step-body h4 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .sat-step-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
-    .sat-step-body p strong { color: var(--white); }
-
-    /* ===== APPLY ===== */
-    .apply-section {
-      padding: 130px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .apply-glow {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(242,100,76,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .apply-inner { max-width: 580px; margin: 0 auto; position: relative; }
-    .apply-h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 6rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.025em;
-      line-height: 1;
-      color: var(--white);
-      margin: 18px 0 20px;
-    }
-    .apply-h2 span { color: var(--orange); }
-    .apply-sub {
-      font-size: 0.98rem;
-      line-height: 1.65;
-      color: var(--muted);
-      margin-bottom: 40px;
-    }
-    .apply-limit {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 8px 20px;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 18px;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 22px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .foot-logo {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.025em;
-      color: var(--white);
-    }
-    .foot-logo span { color: var(--orange); }
-    footer .copy { font-size: 0.68rem; color: #3A3A3A; }
-    .foot-links { display: flex; gap: 20px; }
-    .foot-links a { font-size: 0.72rem; color: #444; text-decoration: none; transition: color 0.2s; }
-    .foot-links a:hover { color: var(--orange); }
-
-    /* ===== RESPONSIVE ===== */
-    @media(max-width: 768px) {
-      nav { padding: 12px 18px; }
-      .logo-word { font-size: 1rem; }
-      .wrap, .wrap-sm { padding: 70px 18px; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .pay-grid { grid-template-columns: 1fr; }
-      .dash-grid { grid-template-columns: 1fr; }
-      .sat-card { grid-template-columns: 1fr; padding: 30px 22px; gap: 32px; }
-      .reqs-grid { grid-template-columns: 1fr; }
-      .sat-stats { gap: 20px; }
-      footer { flex-direction: column; gap: 10px; text-align: center; }
-      .foot-links { display: none; }
-    }
-  </style>
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .sat-card { flex-direction: column; }
+  .sat-right { min-width: unset; width: 100%; }
+}
+@media (max-width: 768px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .pay-grid { grid-template-columns: 1fr; }
+  .req-list { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 3.2rem; }
+  .hero { padding: 3rem 1.5rem 2rem; min-height: auto; padding-top: 4rem; }
+  #mainNav { padding: 0 1.25rem; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .sat-stats { flex-wrap: wrap; gap: 1rem; }
+  .form-card { padding: 2rem 1.25rem; }
+}
+</style>
 </head>
 <body>
 
+<!-- ================================================================ -->
 <!-- NAV -->
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-mark">Ss</div>
+<!-- ================================================================ -->
+<nav id="mainNav">
+  <div class="logo-wrap" onclick="scrollToTop()">
+    <div class="logo-mark"><span class="ls">S</span><span class="ss">s</span></div>
     <span class="logo-word">SeatStock</span>
-  </a>
-  <a href="#apply" class="nav-btn">Apply Now</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-user-email" id="navUserEmail"></span>
+    <span class="nav-logout" id="navLogout" onclick="logout()">Log Out</span>
+    <button class="btn btn-outline" id="navLoginBtn" onclick="showLogin()">Affiliate Login</button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"><div class="hero-bg-text">Ss</div></div>
-  <div class="hero-badge">Affiliate Program · 2026</div>
-  <h1>Get Paid<br>to <span class="accent">Post.</span></h1>
-  <p class="hero-sub">
-    Earn <strong>$30/week</strong> posting SeatStock on your stories —
-    plus <strong>$5 for every referral</strong> and $1 every time they buy a football ticket. All season.
-  </p>
-  <a href="#apply" class="btn-primary">Apply to Be an Affiliate</a>
-  <span class="hero-fine">Tier 1 schools only &nbsp;·&nbsp; 30 spots per campus</span>
+<!-- ================================================================ -->
+<!-- PUBLIC VIEW -->
+<!-- ================================================================ -->
+<div id="publicView">
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">SeatStock Affiliate Program 2025</div>
+    <h1>Get Paid<br/>To <span>Post.</span></h1>
+    <p class="hero-sub">
+      Earn <strong>$30/week</strong> posting SeatStock on your stories &nbsp;+&nbsp; <strong>$5 per referral</strong> &nbsp;+&nbsp; <strong>$1 every time they buy a football ticket.</strong>
+    </p>
+    <div class="hero-ctas">
+      <a href="#apply" class="btn btn-orange">Apply Now</a>
+      <button class="btn btn-outline" onclick="showLogin()">Affiliate Login</button>
+    </div>
+    <div class="hero-tagline">Where Fans &amp; Seats Meet.</div>
+  </section>
+
+  <!-- TICKER -->
   <div class="ticker-wrap">
-    <div class="ticker">
-      <span class="t-item"><span class="hi">$30</span> BASE PAY / WEEK <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$5</span> PER REFERRAL <span class="t-sep">◆</span></span>
-      <span class="t-item">3 SNAPS/DAY &nbsp;MON–FRI <span class="t-sep">◆</span></span>
-      <span class="t-item">IG STORY &nbsp;TUE &amp; THU <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$15</span> SEATSTOCK SATURDAYS <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$1</span> / FOOTBALL TICKET TXN <span class="t-sep">◆</span></span>
-      <span class="t-item">30 SPOTS PER CAMPUS <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$30</span> BASE PAY / WEEK <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$5</span> PER REFERRAL <span class="t-sep">◆</span></span>
-      <span class="t-item">3 SNAPS/DAY &nbsp;MON–FRI <span class="t-sep">◆</span></span>
-      <span class="t-item">IG STORY &nbsp;TUE &amp; THU <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$15</span> SEATSTOCK SATURDAYS <span class="t-sep">◆</span></span>
-      <span class="t-item"><span class="hi">$1</span> / FOOTBALL TICKET TXN <span class="t-sep">◆</span></span>
-      <span class="t-item">30 SPOTS PER CAMPUS <span class="t-sep">◆</span></span>
-    </div>
+    <div class="ticker-track" id="tickerTrack"></div>
   </div>
-</section>
 
-<!-- HOW IT WORKS -->
-<div class="wrap">
-  <div class="sec-head fu">
-    <div class="eyebrow">Simple as that</div>
-    <h2>Three Steps.<br>Real Money.</h2>
-    <p>Game weeks only. Post on schedule, keep SeatStock in your bio, and watch your wallet grow.</p>
-  </div>
-  <div class="steps-grid">
-    <div class="step-card fu">
-      <div class="step-n">Step 01</div>
-      <h3>Get Your Link</h3>
-      <p>You get a unique SeatStock referral link. Keep it <strong>in your bio at all times</strong> during game weeks. That's how your referral bonuses stack.</p>
-      <div class="step-earn">
-        <span class="big">$5</span>
-        <span class="sm">per first referral transaction</span>
+  <!-- HOW IT WORKS -->
+  <section style="padding:5rem 2rem; max-width:1100px; margin:0 auto;" class="fade-up">
+    <div class="section-label">The Program</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Three simple steps to start earning every week as a SeatStock affiliate.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">&#x1F4CB;</div>
+        <h3>Apply &amp; Get Approved</h3>
+        <p>Fill out the form below. We review within 48 hours and send you your unique referral link and posting schedule.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">&#x1F4F2;</div>
+        <h3>Post on Your Stories</h3>
+        <p>Follow the weekly posting schedule — Snapchat stories and Instagram stories. Simple templates, minimal effort.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">&#x1F4B8;</div>
+        <h3>Get Paid Weekly</h3>
+        <p>Base pay hits every week you complete your posts. Referral bonuses and football ticket commissions stack on top.</p>
       </div>
     </div>
-    <div class="step-card fu" style="transition-delay:.1s">
-      <div class="step-n">Step 02</div>
-      <h3>Post the Schedule</h3>
-      <p>During game weeks: <strong>3 Snap posts/day Mon–Fri</strong> and <strong>IG Story every Tue &amp; Thu</strong>. Submit through Lovable. That's 17 posts a week.</p>
-      <div class="step-earn">
-        <span class="big">17</span>
-        <span class="sm">posts per game week</span>
-      </div>
-    </div>
-    <div class="step-card fu" style="transition-delay:.2s">
-      <div class="step-n">Step 03</div>
-      <h3>Get Paid</h3>
-      <p>Hit the week, get <strong>$30 base</strong>. Every referral that transacts adds $5. Every football ticket they buy after adds <strong>$1 all season long.</strong></p>
-      <div class="step-earn">
-        <span class="big">$30+</span>
-        <span class="sm">per game week, no cap on referrals</span>
-      </div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<!-- DASHBOARD PREVIEW -->
-<div class="dash-section">
-  <div class="wrap">
-    <div class="sec-head fu">
-      <div class="demo-pill">Interactive Preview</div>
-      <h2>Your Affiliate<br>Dashboard</h2>
-      <p>Everything in one place — your wallet, streak, posting checklist, and referral stats. Click the posts to check them off.</p>
-    </div>
-
-    <div class="dash-grid">
-
-      <!-- LEFT COL -->
-      <div class="dash-col">
-
-        <!-- WALLET -->
-        <div class="dc fu">
-          <div class="dc-label">Your Wallet <span class="live-ind">Live</span></div>
-          <div class="wallet-amt"><span class="dollar">$</span><span id="walletNum">142.50</span></div>
-          <div class="wallet-sub-label">Available to withdraw</div>
-          <div class="wallet-rows">
-            <div class="wrow base">
-              <span class="wlbl">Base pay (this week)</span>
-              <span class="wval">$30.00</span>
-            </div>
-            <div class="wrow ref">
-              <span class="wlbl">Referral bonuses</span>
-              <span class="wval">$85.00</span>
-            </div>
-            <div class="wrow ftbl">
-              <span class="wlbl">Football ticket bonus</span>
-              <span class="wval" id="ftblAmt">$27.50</span>
-            </div>
-          </div>
-          <button class="withdraw-btn">Withdraw Earnings</button>
-          <div class="wallet-note">Paid weekly after compliance check</div>
+  <!-- PAY STRUCTURE -->
+  <div class="pay-section">
+    <div class="pay-inner fade-up">
+      <div class="section-label">Earnings</div>
+      <h2 class="section-title">Pay Structure</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem;">Three ways to stack earnings every single week.</p>
+      <div class="pay-grid">
+        <div class="pay-card">
+          <div class="pay-card-icon">&#x1F4C5;</div>
+          <div class="pay-amount">$30</div>
+          <div class="pay-freq">Per Week</div>
+          <h3>Base Pay</h3>
+          <p>Post your stories on schedule and collect your $30 base — no minimum follower requirement.</p>
         </div>
-
-        <!-- STREAK -->
-        <div class="dc fu" style="transition-delay:.1s">
-          <div class="dc-label">Posting Streak</div>
-          <div class="streak-row">
-            <div class="streak-fire">🔥</div>
-            <div class="streak-info">
-              <h3>4 WEEKS</h3>
-              <p>Keep it up — don't break your streak</p>
-            </div>
-          </div>
-          <div class="streak-pips">
-            <div class="pip done">W1</div>
-            <div class="pip done">W2</div>
-            <div class="pip done">W3</div>
-            <div class="pip done">W4</div>
-            <div class="pip cur">W5</div>
-            <div class="pip empty">W6</div>
-            <div class="pip empty">W7</div>
-          </div>
+        <div class="pay-card">
+          <div class="pay-card-icon">&#x1F517;</div>
+          <div class="pay-amount">$5</div>
+          <div class="pay-freq">Per Referral</div>
+          <h3>Referral Bonus</h3>
+          <p>Every person who signs up through your link earns you $5 instantly — unlimited referrals.</p>
         </div>
-
-      </div>
-
-      <!-- RIGHT COL -->
-      <div class="dash-col">
-
-        <!-- CHECKLIST -->
-        <div class="dc fu">
-          <div class="cl-header">
-            <div class="dc-label" style="margin-bottom:0">This Week's Posts</div>
-            <div class="cl-progress-lbl" id="cl-lbl">12 / 17 DONE</div>
-          </div>
-
-          <div class="days" id="daysGrid">
-            <div class="day-row">
-              <span class="day-lbl">MON</span>
-              <div class="post-dots">
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd empty"></div>
-                <div class="pd empty"></div>
-              </div>
-            </div>
-            <div class="day-row">
-              <span class="day-lbl">TUE</span>
-              <div class="post-dots">
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd ig done" onclick="tgl(this)"></div>
-                <div class="pd empty"></div>
-              </div>
-            </div>
-            <div class="day-row">
-              <span class="day-lbl">WED</span>
-              <div class="post-dots">
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap done" onclick="tgl(this)"></div>
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd empty"></div>
-                <div class="pd empty"></div>
-              </div>
-            </div>
-            <div class="day-row">
-              <span class="day-lbl">THU</span>
-              <div class="post-dots">
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd ig" onclick="tgl(this)"></div>
-                <div class="pd empty"></div>
-              </div>
-            </div>
-            <div class="day-row">
-              <span class="day-lbl">FRI</span>
-              <div class="post-dots">
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd snap" onclick="tgl(this)"></div>
-                <div class="pd empty"></div>
-                <div class="pd empty"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cl-bar-wrap">
-            <div class="cl-bar" id="clBar"></div>
-          </div>
-          <div class="cl-bar-meta">
-            <span class="l">Posts completed this week</span>
-            <span class="r" id="clPct">71%</span>
-          </div>
+        <div class="pay-card">
+          <div class="pay-card-icon">&#x1F3C8;</div>
+          <div class="pay-amount">$1</div>
+          <div class="pay-freq">Per Ticket Txn</div>
+          <h3>Football Loyalty</h3>
+          <p>Earn $1 every time one of your referrals buys a football ticket on SeatStock. Passive and permanent.</p>
         </div>
-
-        <!-- REFERRALS -->
-        <div class="dc fu" style="transition-delay:.1s">
-          <div class="dc-label">Your Referral Link</div>
-          <div class="ref-link-box">
-            <span class="ref-link-text">seatstock.com/r/<span>yourusername</span></span>
-            <button class="copy-btn" id="copyBtn" onclick="copyLink()">Copy</button>
-          </div>
-          <div class="ref-stat-grid">
-            <div class="ref-stat">
-              <div class="ref-stat-val" id="refTotal">17</div>
-              <div class="ref-stat-lbl">Total Referrals</div>
-            </div>
-            <div class="ref-stat">
-              <div class="ref-stat-val">$85</div>
-              <div class="ref-stat-lbl">Referral Earned</div>
-            </div>
-            <div class="ref-stat">
-              <div class="ref-stat-val" id="txnTotal">27</div>
-              <div class="ref-stat-lbl">Their Txns ($1 each)</div>
-            </div>
-          </div>
-        </div>
-
+      </div>
+      <div class="req-box">
+        <h4>Requirements to Qualify</h4>
+        <ul class="req-list">
+          <li>Active Instagram account (any size)</li>
+          <li>Active Snapchat account</li>
+          <li>Complete weekly posting schedule</li>
+          <li>Be a current college student</li>
+          <li>Post at least 3 Snapchat stories/week</li>
+          <li>1 Instagram story per assigned day</li>
+          <li>Must not promote competitor platforms</li>
+          <li>Comply with FTC disclosure guidelines</li>
+        </ul>
       </div>
     </div>
   </div>
-</div>
 
-<!-- PAY BREAKDOWN -->
-<div class="wrap" id="pay">
-  <div class="sec-head fu">
-    <div class="eyebrow">Earning Structure</div>
-    <h2>Every Way<br>You Get Paid</h2>
-    <p>Stack multiple streams. They all run off your one link.</p>
-  </div>
-
-  <div class="pay-grid">
-    <div class="pay-card fu">
-      <div class="pay-icon">📍</div>
-      <div class="pay-tag">Base Pay</div>
-      <div class="pay-amt">$30 <span class="unit">/wk</span></div>
-      <p class="pay-desc">Complete all posts with SeatStock in your bio. Game weeks only. <strong>Miss 2+ posts = no base pay that week.</strong></p>
-    </div>
-    <div class="pay-card fu" style="transition-delay:.1s">
-      <div class="pay-icon">🔗</div>
-      <div class="pay-tag">Referral Bonus</div>
-      <div class="pay-amt">$5 <span class="unit">/ person</span></div>
-      <p class="pay-desc">Every person who uses your link and <strong>completes their first transaction</strong> on SeatStock. No cap.</p>
-    </div>
-    <div class="pay-card fu" style="transition-delay:.2s">
-      <div class="pay-icon">🏈</div>
-      <div class="pay-tag">Football Loyalty</div>
-      <div class="pay-amt">$1 <span class="unit">/ ticket txn</span></div>
-      <p class="pay-desc">Every 2026 football ticket transaction your referrals make on SeatStock puts <strong>$1 in your wallet. All season.</strong></p>
-    </div>
-  </div>
-
-  <div class="reqs-box fu">
-    <h3>Requirements to Stay Active</h3>
-    <div class="reqs-grid">
-      <div class="req-item">
-        <div class="req-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <p><strong>SeatStock link in bio</strong> at all times during game weeks</p>
-      </div>
-      <div class="req-item">
-        <div class="req-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <p><strong>3 Snapchat posts per day,</strong> Monday through Friday</p>
-      </div>
-      <div class="req-item">
-        <div class="req-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <p><strong>Instagram Story on Tue &amp; Thu</strong> during game weeks</p>
-      </div>
-      <div class="req-item">
-        <div class="req-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <p><strong>Submit posts through Lovable —</strong> compliance checked weekly</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SEATSTOCK SATURDAYS -->
-<div class="sat-section">
-  <div class="wrap">
-    <div class="sat-card fu">
+  <!-- SEATSTOCK SATURDAYS -->
+  <section class="sat-section fade-up">
+    <div class="sat-card">
       <div class="sat-left">
-        <div class="eyebrow">Bonus Program</div>
-        <h2 class="sat-h2">#SeatStock<br><span>Saturdays</span></h2>
-        <p class="sat-p">Separate from the core affiliate program. Post your gameday fit every Saturday with #SeatStockSaturday and your referral link. Pure awareness. Pure cash.</p>
+        <div class="sat-badge">Featured Opportunity</div>
+        <h2>SeatStock Saturdays</h2>
+        <p>
+          The biggest earning opportunity in the program. SeatStock Saturdays is a weekly activation during football season where your posts get amplified across our platform — meaning more eyeballs on your referral link, more signups, and more ticket transactions all game day long.
+        </p>
+        <p>
+          Affiliates who participate in SeatStock Saturdays earn an average of <strong style="color:var(--green);">2.4x more</strong> than standard weekly payouts. Select "SeatStock Saturdays" in your application to opt in.
+        </p>
         <div class="sat-stats">
-          <div class="sat-stat"><div class="v">$15</div><div class="l">Per post</div></div>
-          <div class="sat-stat"><div class="v">7</div><div class="l">Game days</div></div>
-          <div class="sat-stat"><div class="v">$105</div><div class="l">Max / season</div></div>
+          <div>
+            <div class="sat-stat-val">2.4x</div>
+            <div class="sat-stat-label">Avg. Saturday Multiplier</div>
+          </div>
+          <div>
+            <div class="sat-stat-val">$72</div>
+            <div class="sat-stat-label">Avg. Saturday Earning</div>
+          </div>
+          <div>
+            <div class="sat-stat-val">14</div>
+            <div class="sat-stat-label">Game Days / Season</div>
+          </div>
         </div>
       </div>
-      <div class="sat-steps">
-        <div class="sat-step">
-          <div class="sat-step-num">1</div>
-          <div class="sat-step-body">
-            <h4>Wear Your Gameday Fit</h4>
-            <p>Head to the game. Authentic &gt; perfect. Just show up looking like a fan.</p>
+      <div class="sat-right">
+        <div style="font-size:3rem;">&#x1F3DF;&#xFE0F;</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.3rem;color:var(--orange);margin:0.5rem 0;">Saturdays</div>
+        <small>Game Day Activation</small>
+        <div style="margin-top:1rem;font-size:0.8rem;color:var(--muted);line-height:1.5;">Every Saturday<br/>during football season</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <div class="form-section" id="apply">
+    <div class="form-inner fade-up">
+      <div class="form-card">
+        <h2 class="form-title">Apply Now</h2>
+        <p class="form-sub">Join the SeatStock affiliate program. We'll review your application within 48 hours.</p>
+        <form id="applyForm" onsubmit="handleApply(event)" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="Brady" required/>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Stein" required/>
+            </div>
           </div>
-        </div>
-        <div class="sat-step">
-          <div class="sat-step-num">2</div>
-          <div class="sat-step-body">
-            <h4>Post with the Hashtag</h4>
-            <p>Share to your story with <strong>#SeatStockSaturday</strong> and your SeatStock referral link.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="igHandle">Instagram Handle</label>
+              <input type="text" id="igHandle" placeholder="@yourusername" required/>
+            </div>
+            <div class="form-group">
+              <label for="scUsername">Snapchat Username</label>
+              <input type="text" id="scUsername" placeholder="yourusername" required/>
+            </div>
           </div>
-        </div>
-        <div class="sat-step">
-          <div class="sat-step-num">3</div>
-          <div class="sat-step-body">
-            <h4>Submit &amp; Get Paid</h4>
-            <p>Submit via Lovable. <strong>$15 hits your wallet</strong> after game day verification. 20 spots per campus.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="school">School</label>
+              <select id="school" required>
+                <option value="" disabled selected>Select your school</option>
+                <option>Alabama</option><option>Arizona</option><option>Arizona State</option>
+                <option>Arkansas</option><option>Auburn</option><option>Baylor</option>
+                <option>Boston College</option><option>BYU</option><option>California</option>
+                <option>Cincinnati</option><option>Clemson</option><option>Colorado</option>
+                <option>Duke</option><option>Florida</option><option>Florida State</option>
+                <option>Georgia</option><option>Georgia Tech</option><option>Houston</option>
+                <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+                <option>Iowa State</option><option>Kansas</option><option>Kansas State</option>
+                <option>Kentucky</option><option>LSU</option><option>Louisville</option>
+                <option>Maryland</option><option>Miami (FL)</option><option>Michigan</option>
+                <option>Michigan State</option><option>Minnesota</option><option>Mississippi State</option>
+                <option>Missouri</option><option>Nebraska</option><option>North Carolina</option>
+                <option>Northwestern</option><option>Notre Dame</option><option>Ohio State</option>
+                <option>Oklahoma State</option><option>Ole Miss</option><option>Oregon</option>
+                <option>Penn State</option><option>Pittsburgh</option><option>Purdue</option>
+                <option>Rutgers</option><option>South Carolina</option><option>Stanford</option>
+                <option>Syracuse</option><option>TCU</option><option>Tennessee</option>
+                <option>Texas A&amp;M</option><option>Texas Tech</option><option>UCF</option>
+                <option>UCLA</option><option>USC</option><option>Utah</option>
+                <option>Vanderbilt</option><option>Virginia</option><option>Virginia Tech</option>
+                <option>Wake Forest</option><option>Washington</option><option>West Virginia</option>
+                <option>Wisconsin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="applying">Applying For</label>
+              <select id="applying" required>
+                <option value="" disabled selected>Select program</option>
+                <option>Affiliate Program</option>
+                <option>SeatStock Saturdays</option>
+              </select>
+            </div>
           </div>
-        </div>
+          <button type="submit" class="btn btn-orange btn-full" style="font-size:1rem;padding:0.85em;">Submit Application</button>
+          <div class="form-success" id="formSuccess">
+            Application received! We'll be in touch within 48 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo-wrap">
+      <div class="logo-mark"><span class="ls">S</span><span class="ss">s</span></div>
+      <span class="logo-word">SeatStock</span>
+    </div>
+    <div class="footer-copy">&copy; 2025 SeatStock. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
+</div><!-- /publicView -->
+
+<!-- ================================================================ -->
+<!-- LOGIN OVERLAY -->
+<!-- ================================================================ -->
+<div id="loginOverlay" role="dialog" aria-modal="true" aria-label="Affiliate Login">
+  <div class="login-card">
+    <div class="login-close" onclick="hideLogin()" aria-label="Close">&times;</div>
+    <div class="login-logo">
+      <div class="logo-mark"><span class="ls">S</span><span class="ss">s</span></div>
+      <span class="logo-word">SeatStock</span>
+    </div>
+    <div class="login-portal">Affiliate Portal</div>
+    <div class="login-welcome">Welcome back.</div>
+    <div class="login-form">
+      <div class="login-error" id="loginError">Please enter your email and password.</div>
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@university.edu" autocomplete="username"/>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password"/>
+      </div>
+      <button class="btn btn-orange btn-full" onclick="doLogin()" style="font-size:1rem;padding:0.85em;margin-top:0.25rem;">Login</button>
+      <div class="login-hint">
+        Don't have access yet?
+        <a onclick="hideLogin();setTimeout(()=>document.getElementById('apply').scrollIntoView({behavior:'smooth'}),150)">Apply below &darr;</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- APPLY -->
-<section class="apply-section" id="apply">
-  <div class="apply-glow"></div>
-  <div class="apply-inner">
-    <div class="eyebrow">Ready to earn?</div>
-    <h2 class="apply-h2 fu">Spots Are<br><span>Limited.</span></h2>
-    <p class="apply-sub fu">30 affiliates per Tier 1 campus. Once they're filled, they're filled. Apply now and lock your spot before game season starts.</p>
-    <a href="https://seatstock.com/affiliate" class="btn-primary fu">Apply to Be an Affiliate</a>
-    <div class="apply-limit fu">30 spots &nbsp;·&nbsp; Tier 1 schools only &nbsp;·&nbsp; Game weeks only</div>
-  </div>
-</section>
+<!-- ================================================================ -->
+<!-- DASHBOARD VIEW -->
+<!-- ================================================================ -->
+<div id="dashView">
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-logo"><span>Seat</span>Stock</div>
-  <p class="copy">&copy; 2026 SeatStock. Where Fans &amp; Seats Meet.</p>
-  <div class="foot-links">
-    <a href="#">Instagram</a>
-    <a href="#">Snapchat</a>
-    <a href="#">seatstock.com</a>
+  <div class="dash-header">
+    <div class="dash-title">Your Dashboard</div>
+    <div class="dash-subtitle">Week 5 of 7 &nbsp;&middot;&nbsp; Game Week Active</div>
   </div>
-</footer>
 
+  <div class="dash-grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="dash-left">
+
+      <!-- WALLET -->
+      <div class="card">
+        <div class="wallet-label">Your Wallet</div>
+        <div class="wallet-amount" id="walletAmount">$142.50</div>
+        <div class="wallet-sublabel">Available to withdraw</div>
+        <div class="wallet-breakdown">
+          <div class="breakdown-row">
+            <span class="breakdown-label">Base pay (this week)</span>
+            <span class="breakdown-val">$30.00</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Referral bonuses</span>
+            <span class="breakdown-val">$85.00</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Football ticket bonus</span>
+            <span class="breakdown-val">$27.50</span>
+          </div>
+        </div>
+        <div class="wallet-btn">
+          <button class="btn btn-orange btn-full">Withdraw Earnings</button>
+        </div>
+        <div class="wallet-note">Paid weekly after compliance check</div>
+      </div>
+
+      <!-- STREAK -->
+      <div class="card">
+        <div class="streak-label">Posting Streak</div>
+        <div class="streak-main">
+          <span class="streak-fire">&#x1F525;</span>
+          <span class="streak-count">4 WEEKS</span>
+        </div>
+        <div class="streak-sub">Don't break your streak!</div>
+        <div class="streak-pips">
+          <div class="pip pip-done">W1</div>
+          <div class="pip pip-done">W2</div>
+          <div class="pip pip-done">W3</div>
+          <div class="pip pip-done">W4</div>
+          <div class="pip pip-current">W5</div>
+          <div class="pip pip-empty">W6</div>
+          <div class="pip pip-empty">W7</div>
+        </div>
+      </div>
+
+      <!-- REFERRAL -->
+      <div class="card">
+        <div class="ref-label">Your Referral Link</div>
+        <div class="referral-link-wrap">
+          <div class="referral-link-url">seatstock.com/r/yourusername</div>
+          <button class="referral-copy-btn" id="copyBtn" onclick="copyLink()">Copy</button>
+        </div>
+        <div class="ref-stats">
+          <div class="ref-stat">
+            <span class="ref-stat-val" id="refTotal">17</span>
+            <span class="ref-stat-label">Total Referrals</span>
+          </div>
+          <div class="ref-stat">
+            <span class="ref-stat-val" id="refEarned">$85</span>
+            <span class="ref-stat-label">Earned</span>
+          </div>
+          <div class="ref-stat">
+            <span class="ref-stat-val" id="refTxns">27</span>
+            <span class="ref-stat-label">Football Txns</span>
+          </div>
+        </div>
+        <div class="ref-note">You earn $1 every time a referral buys a football ticket</div>
+      </div>
+
+    </div><!-- /dash-left -->
+
+    <!-- RIGHT COLUMN -->
+    <div class="dash-right">
+
+      <!-- POSTING CHECKLIST -->
+      <div class="card" style="flex:1;">
+        <div class="checklist-header">
+          <div class="checklist-title">This Week's Posts</div>
+          <div class="checklist-progress-badge" id="progressBadge">12 / 17 DONE</div>
+        </div>
+
+        <!-- SNAPCHAT -->
+        <div class="platform-section">
+          <div class="platform-label plat-snap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.206 1c.752 0 3.026.213 4.122 2.078.354.607.354 1.556.354 2.348l.001.586c.001.288.012.474.04.564.046.145.247.22.432.275l.09.028c.36.112.91.283.91.9 0 .485-.368.82-.733.967-.07.028-.14.05-.197.066.08.243.2.49.36.722.502.73 1.297 1.17 2.198 1.19.152.004.31.024.463.063.348.09.54.37.54.664 0 .52-.444.906-.934 1.05-.25.075-.515.12-.782.12a2.64 2.64 0 01-.426-.034c-.134-.021-.22-.034-.265-.034-.037 0-.075.003-.123.013-.233.04-.408.282-.59.734-.27.682-.586 1.46-1.244 2.12a5.98 5.98 0 01-1.56 1.137c-1.027.511-2.2.77-3.484.77-1.286 0-2.46-.259-3.487-.77a5.98 5.98 0 01-1.56-1.138c-.657-.66-.974-1.437-1.244-2.119-.181-.452-.357-.694-.59-.734a.774.774 0 00-.123-.013c-.045 0-.13.013-.264.034a2.64 2.64 0 01-.427.034c-.267 0-.532-.045-.782-.12C2.444 10.906 2 10.52 2 10c0-.294.192-.575.54-.665.153-.039.31-.058.463-.062.9-.02 1.696-.46 2.198-1.19.16-.232.28-.48.36-.722a4.52 4.52 0 01-.197-.066c-.365-.147-.733-.482-.733-.967 0-.617.55-.788.91-.9l.09-.028c.185-.055.386-.13.432-.275.028-.09.04-.276.04-.564l.001-.586c0-.792 0-1.741.354-2.348C7.55 1.213 9.823 1 10.575 1h1.631z"/></svg>
+            Snapchat Stories
+          </div>
+          <!-- MON: 3 done -->
+          <div class="day-row">
+            <span class="day-label">MON</span>
+            <div class="dots-wrap">
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+            </div>
+          </div>
+          <!-- TUE: 3 done -->
+          <div class="day-row">
+            <span class="day-label">TUE</span>
+            <div class="dots-wrap">
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+            </div>
+          </div>
+          <!-- WED: 2 done, 1 pending -->
+          <div class="day-row">
+            <span class="day-label">WED</span>
+            <div class="dots-wrap">
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-done" data-state="done" onclick="toggleDot(this,'snap')">&#x2713;</div>
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+            </div>
+          </div>
+          <!-- THU: 0 done -->
+          <div class="day-row">
+            <span class="day-label">THU</span>
+            <div class="dots-wrap">
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+            </div>
+          </div>
+          <!-- FRI: 0 done -->
+          <div class="day-row">
+            <span class="day-label">FRI</span>
+            <div class="dots-wrap">
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+              <div class="dot snap-pending" data-state="pending" onclick="toggleDot(this,'snap')">S</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="platform-section">
+          <div class="platform-label plat-ig">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram Stories
+          </div>
+          <div class="day-row">
+            <span class="day-label">MON</span>
+            <div class="dots-wrap"><div class="dot na">&mdash;</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">TUE</span>
+            <div class="dots-wrap"><div class="dot ig-done" data-state="done" onclick="toggleDot(this,'ig')">&#x2713;</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">WED</span>
+            <div class="dots-wrap"><div class="dot na">&mdash;</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">THU</span>
+            <div class="dots-wrap"><div class="dot ig-pending" data-state="pending" onclick="toggleDot(this,'ig')">IG</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">FRI</span>
+            <div class="dots-wrap"><div class="dot na">&mdash;</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">SAT</span>
+            <div class="dots-wrap"><div class="dot na">&mdash;</div></div>
+          </div>
+          <div class="day-row">
+            <span class="day-label">SUN</span>
+            <div class="dots-wrap"><div class="dot na">&mdash;</div></div>
+          </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="checklist-bar-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill" style="width:70.59%;"></div>
+          </div>
+          <div class="progress-text" id="progressText">
+            <span>12 posts completed</span> &middot; 5 more to unlock $30
+          </div>
+        </div>
+      </div><!-- /checklist card -->
+
+    </div><!-- /dash-right -->
+  </div><!-- /dash-grid -->
+
+</div><!-- /dashView -->
+
+<!-- ================================================================ -->
+<!-- SCRIPTS -->
+<!-- ================================================================ -->
 <script>
-  // ===== INTERSECTION OBSERVER =====
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+/* ── TICKER ──────────────────────────────────────────────────── */
+(function buildTicker() {
+  var items = [
+    ['&#x1F3C8;', '<span class="t-orange">$30/wk</span> base pay'],
+    ['&#x1F517;', '<span class="t-green">$5</span> per referral'],
+    ['&#x1F3DF;&#xFE0F;', '<span class="t-green">$1</span> per football ticket txn'],
+    ['&#x1F4F8;', 'Snap + IG stories only'],
+    ['&#x1F525;', '<span class="t-orange">4-week</span> avg affiliate streak'],
+    ['&#x1F4C8;', '<span class="t-green">$142</span> avg weekly earner'],
+    ['&#x1F3DF;&#xFE0F;', 'SeatStock Saturdays &mdash; <span class="t-orange">2.4x multiplier</span>'],
+    ['&#x1F465;', '<span class="t-green">17</span> avg referrals per affiliate'],
+    ['&#x26A1;', 'Paid every Friday'],
+    ['&#x1F393;', 'Available at <span class="t-orange">65+ schools</span>']
+  ];
+  var html = items.map(function(i){ return '<span class="ticker-item">' + i[0] + '&nbsp;&nbsp;' + i[1] + '&nbsp;<span style="color:var(--border)">·</span></span>'; }).join('');
+  var track = document.getElementById('tickerTrack');
+  track.innerHTML = html + html; // duplicate for seamless loop
+})();
 
-  // ===== LIVE WALLET COUNTER =====
-  const walletBase = 142.50;
-  const walletRate = 0.00045;
-  const t0 = Date.now();
-  const ftblBase = 27.50;
-  const ftblRate = 0.00012;
+/* ── SCROLL ANIMATIONS ───────────────────────────────────────── */
+var fadeEls = document.querySelectorAll('.fade-up');
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(function(el) { io.observe(el); });
 
-  (function tick() {
-    const s = (Date.now() - t0) / 1000;
-    document.getElementById('walletNum').textContent = (walletBase + s * walletRate).toFixed(2);
-    document.getElementById('ftblAmt').textContent = '$' + (ftblBase + s * ftblRate).toFixed(2);
-    requestAnimationFrame(tick);
-  })();
+/* ── LOGIN OVERLAY ───────────────────────────────────────────── */
+function showLogin() {
+  document.getElementById('loginOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ document.getElementById('loginEmail').focus(); }, 60);
+}
+function hideLogin() {
+  document.getElementById('loginOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('loginError').style.display = 'none';
+}
+document.getElementById('loginOverlay').addEventListener('click', function(e) {
+  if (e.target === this) hideLogin();
+});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') hideLogin(); });
+['loginEmail','loginPassword'].forEach(function(id) {
+  document.getElementById(id).addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+  });
+});
 
-  // ===== POSTING CHECKLIST =====
-  let done = 12, total = 17;
+/* ── AUTH ────────────────────────────────────────────────────── */
+function doLogin() {
+  var email = document.getElementById('loginEmail').value.trim();
+  var pass  = document.getElementById('loginPassword').value.trim();
+  var err   = document.getElementById('loginError');
+  if (!email || !pass) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  sessionStorage.setItem('loggedIn', 'true');
+  sessionStorage.setItem('userEmail', email);
+  hideLogin();
+  showDashboard(email);
+}
 
-  function tgl(el) {
-    el.classList.toggle('done');
-    done += el.classList.contains('done') ? 1 : -1;
-    el.classList.remove('popped');
-    void el.offsetWidth;
-    if (el.classList.contains('done')) el.classList.add('popped');
-    refreshProgress();
+function logout() {
+  sessionStorage.removeItem('loggedIn');
+  sessionStorage.removeItem('userEmail');
+  hideDashboard();
+}
+
+function showDashboard(email) {
+  document.getElementById('publicView').style.display = 'none';
+  document.getElementById('dashView').style.display   = 'block';
+  document.getElementById('navLoginBtn').style.display = 'none';
+  var emailEl = document.getElementById('navUserEmail');
+  emailEl.textContent = email || '';
+  emailEl.style.display = 'inline';
+  document.getElementById('navLogout').style.display = 'inline';
+  window.scrollTo(0, 0);
+  startWalletCounter();
+  startReferralTicker();
+}
+
+function hideDashboard() {
+  document.getElementById('publicView').style.display = 'block';
+  document.getElementById('dashView').style.display   = 'none';
+  document.getElementById('navLoginBtn').style.display = 'inline-flex';
+  document.getElementById('navUserEmail').style.display = 'none';
+  document.getElementById('navLogout').style.display    = 'none';
+  window.scrollTo(0, 0);
+}
+
+// Session restore
+(function() {
+  if (sessionStorage.getItem('loggedIn') === 'true') {
+    showDashboard(sessionStorage.getItem('userEmail') || 'affiliate@seatstock.com');
   }
+})();
 
-  function refreshProgress() {
-    const pct = Math.round((done / total) * 100);
-    document.getElementById('cl-lbl').textContent = done + ' / ' + total + ' DONE';
-    document.getElementById('clBar').style.width = pct + '%';
-    document.getElementById('clPct').textContent = pct + '%';
+/* ── WALLET LIVE COUNTER ─────────────────────────────────────── */
+var walletCents  = 14250;
+var walletTarget = 14250;
+var walletRAF    = null;
+var walletStarted = false;
+
+function startWalletCounter() {
+  if (walletStarted) return;
+  walletStarted = true;
+  tickWallet();
+  setInterval(function() {
+    if (Math.random() < 0.28) walletTarget += Math.floor(Math.random() * 75 + 10);
+  }, 7500);
+}
+
+function tickWallet() {
+  if (walletCents < walletTarget) {
+    walletCents = Math.min(walletCents + 1, walletTarget);
+    var dollars = (walletCents / 100).toFixed(2);
+    document.getElementById('walletAmount').textContent = '$' + dollars;
   }
+  walletRAF = requestAnimationFrame(tickWallet);
+}
 
-  // Animate bar on scroll into view
-  const barEl = document.getElementById('clBar');
-  barEl.style.width = '0%';
-  const barObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      setTimeout(refreshProgress, 500);
-      barObs.disconnect();
+/* ── REFERRAL TICKER ─────────────────────────────────────────── */
+var refTotal  = 17;
+var refEarned = 85;
+var refTxns   = 27;
+
+function startReferralTicker() {
+  setInterval(function() {
+    if (Math.random() < 0.22) {
+      refTotal++;
+      refEarned += 5;
+      flashStat('refTotal',  refTotal);
+      flashStat('refEarned', '$' + refEarned);
     }
-  }, { threshold: 0.6 });
-  barObs.observe(barEl.parentElement);
-
-  // ===== COPY REFERRAL LINK =====
-  function copyLink() {
-    const btn = document.getElementById('copyBtn');
-    navigator.clipboard.writeText('https://seatstock.com/r/yourusername').catch(() => {});
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
-  }
-
-  // ===== LIVE REFERRAL TICKER =====
-  function maybeTickRef() {
-    if (Math.random() < 0.25) {
-      const el = document.getElementById('refTotal');
-      el.textContent = parseInt(el.textContent) + 1;
-      el.style.color = '#27AE60';
-      setTimeout(() => { el.style.color = 'var(--orange)'; }, 1200);
+    if (Math.random() < 0.30) {
+      refTxns++;
+      flashStat('refTxns', refTxns);
     }
-    setTimeout(maybeTickRef, 9000 + Math.random() * 8000);
+  }, 6000);
+}
+
+function flashStat(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = val;
+  el.classList.remove('flash');
+  void el.offsetWidth;
+  el.classList.add('flash');
+}
+
+/* ── POSTING CHECKLIST ───────────────────────────────────────── */
+var TOTAL_POSTS = 17; // 15 snap + 2 ig
+
+function countDone() {
+  var dots = document.querySelectorAll('.dot[data-state]');
+  var done = 0;
+  dots.forEach(function(d) { if (d.dataset.state === 'done') done++; });
+  return done;
+}
+
+function updateProgress() {
+  var done      = countDone();
+  var remaining = Math.max(0, TOTAL_POSTS - done);
+  var pct       = (done / TOTAL_POSTS) * 100;
+  document.getElementById('progressBadge').textContent = done + ' / ' + TOTAL_POSTS + ' DONE';
+  document.getElementById('progressFill').style.width  = pct + '%';
+  var text = document.getElementById('progressText');
+  if (remaining === 0) {
+    text.innerHTML = '<span>' + done + ' posts completed</span> &middot; All done &mdash; $30 unlocked!';
+  } else {
+    text.innerHTML = '<span>' + done + ' posts completed</span> &middot; ' + remaining + ' more to unlock $30';
   }
-  setTimeout(maybeTickRef, 12000);
+}
+
+function toggleDot(el, type) {
+  if (el.classList.contains('na')) return;
+  var isDone = el.dataset.state === 'done';
+  el.dataset.state = isDone ? 'pending' : 'done';
+  if (type === 'snap') {
+    if (isDone) { el.classList.remove('snap-done'); el.classList.add('snap-pending'); el.textContent = 'S'; }
+    else        { el.classList.remove('snap-pending'); el.classList.add('snap-done'); el.textContent = '\u2713'; }
+  } else {
+    if (isDone) { el.classList.remove('ig-done'); el.classList.add('ig-pending'); el.textContent = 'IG'; }
+    else        { el.classList.remove('ig-pending'); el.classList.add('ig-done'); el.textContent = '\u2713'; }
+  }
+  el.classList.remove('popping');
+  void el.offsetWidth;
+  el.classList.add('popping');
+  el.addEventListener('animationend', function(){ el.classList.remove('popping'); }, { once: true });
+  updateProgress();
+}
+
+/* ── COPY LINK ───────────────────────────────────────────────── */
+function copyLink() {
+  var url = 'https://seatstock.com/r/yourusername';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).catch(function(){});
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+  var btn = document.getElementById('copyBtn');
+  btn.textContent = 'Copied!';
+  btn.classList.add('copied');
+  setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
+}
+
+/* ── APPLICATION FORM ────────────────────────────────────────── */
+function handleApply(e) {
+  e.preventDefault();
+  var form = e.target;
+  // Basic validation
+  var inputs = form.querySelectorAll('input[required], select[required]');
+  var valid = true;
+  inputs.forEach(function(inp) { if (!inp.value.trim()) valid = false; });
+  if (!valid) { return; }
+  var success = document.getElementById('formSuccess');
+  success.style.display = 'block';
+  form.querySelectorAll('input, select').forEach(function(el) { el.disabled = true; });
+  form.querySelector('button[type="submit"]').disabled = true;
+  success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ── SCROLL TO TOP ───────────────────────────────────────────── */
+function scrollToTop() {
+  if (document.getElementById('dashView').style.display === 'block') return;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
-
 </body>
 </html>
